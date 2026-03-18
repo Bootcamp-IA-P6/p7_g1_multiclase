@@ -1,0 +1,34 @@
+20260317103934*
+
+Obtenido de:
+https://github.com/orgs/Bootcamp-IA-P6/projects/41/views/1?pane=issue&itemId=165853712&issue=Bootcamp-IA-P6%7Cp7_g1_multiclase%7C1
+
+20260317084913*
+
+Análisis de Factores de Riesgo de Obesidad
+Descripción:
+Para asegurar que el modelo final sea robusto y no tenga overfitting, todo el equipo debe realizar un Análisis Exploratorio de Datos (EDA) basado en las mismas 5 preguntas de investigación. El objetivo es que, tras este análisis, todos estemos de acuerdo en qué variables "limpiar" y cuáles son las más importantes.
+📋 Guía de Investigación (Las 5 Preguntas)
+Todos los miembros del equipo deben responder a estas preguntas en su notebook de trabajo, comparando los resultados en la próxima reunión:
+Distribución del Target (NObeyesdad):
+Misión: ¿Cuántos registros hay por cada una de las 7 clases? ¿Están equilibradas o hay alguna clase minoritaria?
+Gráfico sugerido: sns.countplot.
+Segmentación Física (Edad y Peso):
+Misión: ¿Cómo se distribuyen la Edad y el Peso a través de los niveles de obesidad? ¿Hay solapamiento entre las clases?
+Gráfico sugerido: sns.boxplot(x='NObeyesdad', y='Weight', data=df).
+Impacto del Entorno Familiar:
+Misión: ¿Es el antecedente familiar (family_history_with_overweight) un factor determinante para las clases de Obesidad Tipo II y III?
+Gráfico sugerido: sns.countplot(x='NObeyesdad', hue='family_history_with_overweight').
+Relación Estilo de Vida y Consumo:
+Misión: ¿Cómo afectan la actividad física (FAF) y el consumo de agua (CH2O) al nivel de obesidad?
+Gráfico sugerido: sns.heatmap (matriz de correlación) o sns.pairplot.
+Análisis de Outliers y Errores:
+Misión: ¿Existen valores de Edad o Peso que parezcan errores de entrada de datos?
+Gráfico sugerido: sns.scatterplot entre Height y Weight.
+✅ Entregable de esta Issue:
+Un resumen corto en el README.md que diga:
+"Hemos decidido eliminar los outliers de la variable X".
+"Las 3 variables más correlacionadas con la obesidad son A, B y C".
+"El dataset está [Equilibrado / Desequilibrado]".
+
+20260317085727*

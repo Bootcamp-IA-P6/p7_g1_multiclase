@@ -1,0 +1,29 @@
+../../../p7_g1_multiclase/
+|-- README.md
+|-- data
+|   |-- processed
+|   |-- raw
+|   |   `-- ObesityDataSet.csv
+|   `-- temp
+|       |-- NObeyesdad.Campos.txt
+|       |-- NObeyesdad.txt
+|       `-- sort.NObeyesdad.uniq-c.sort.cat-n_20260317105211.txt
+|-- docs
+|   |-- D20260111152226.Plantilla de Word - Tabla Encabezado Borde Texto.docx
+|   |-- RequisitosProyecto.p7_g1_multiclase.txt
+|   |-- p7_g1_multiclase.docx
+|   |-- temp
+|   |   |-- p7_g1_multiclase.tree-a_20260317113141.txt
+|   |   `-- p7_g1_multiclase.tree_20260317113442.txt
+|   |-- ~$_g1_multiclase.docx
+|   `-- ~WRL3181.tmp
+|-- main.py
+|-- models
+|-- notebooks
+|   |-- EDA-Plantilla_JJ.ipynb
+|   `-- eda_obesity_m.jpynb
+|-- pyproject.toml
+|-- report
+`-- uv.lock
+
+9 directories, 17 files

@@ -1,0 +1,7 @@
+     1	    272 Insufficient_Weight
+     2	    287 Normal_Weight
+     3	    290 Overweight_Level_I
+     4	    290 Overweight_Level_II
+     5	    297 Obesity_Type_II
+     6	    324 Obesity_Type_III
+     7	    351 Obesity_Type_I
