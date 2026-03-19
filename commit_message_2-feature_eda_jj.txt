@@ -1,0 +1,132 @@
+feat(jj): preprocesamiento, modelado y documentación completa · rama 2-feature_eda_jj
+
+TRABAJO COMPLETADO EN ESTA RAMA
+================================
+
+NOTEBOOKS
+---------
+notebooks/EDA_Obesity_p7_g1_multiclase_JJ.ipynb
+  · EDA completo con 5 preguntas de investigación del equipo
+  · Análisis de nulos, distribución del target, outliers
+  · Eliminación de 24 duplicados sintéticos (SMOTE) → 2087 registros limpios
+  · Gráficos: countplot, boxplot, heatmap, pairplot, scatterplot
+
+notebooks/Preprocesamiento_p7_g1_multiclase_JJ.ipynb
+  · Encoding binario (yes/no → 1/0): family_history, FAVC, SMOKE, SCC
+  · Encoding ordinal con orden clínico explícito: CAEC, CALC, MTRANS
+  · One-Hot encoding: Gender → Gender_Male
+  · Target codificado con orden clínico real (0=Insufficient → 6=Obesity_III)
+  · Split estratificado 80/20 con stratify=y (train=1669, test=418)
+  · StandardScaler fit solo sobre train (sin data leakage)
+  · Comentarios inline y celdas markdown de interpretación en cada bloque
+
+notebooks/Preprocesamiento_p7_g1_multiclase_JJ.20260319111103J.ipynb
+  · Versión de trabajo / backup fechado del preprocesamiento
+
+notebooks/modelado_p7_g1_multiclase_JJ.ipynb
+  · 5 modelos evaluados: Decision Tree, Random Forest, KNN, SVM, XGBoost
+  · GridSearchCV con CV 5-fold para RF, SVM y XGBoost
+  · Curva overfitting vs max_depth (Decision Tree)
+  · Curva accuracy vs k (KNN)
+  · Comparativa final con tabla y gráfico accuracy + CV mean ± std
+  · Análisis detallado del ganador: matriz de confusión doble (absoluta + normalizada)
+  · Classification report con análisis de recall por clase
+  · Feature importance del modelo ganador
+  · Fix aplicado: y_train/y_test .astype(int) para XGBoost y le.inverse_transform
+  · Comentarios inline y celdas markdown de interpretación en cada bloque
+
+notebooks/modelado_p7_g1_multiclase_JJ.20260319112846J.ipynb
+  · Versión de trabajo / backup fechado del modelado
+
+notebooks/EDA-Plantilla_JJ.ipynb
+  · Plantilla reutilizable de EDA para futuros proyectos del equipo
+
+DATOS
+-----
+data/raw/ObesityDataSet.csv
+  · Dataset original de Kaggle (2111 registros × 17 columnas)
+
+data/processed/ObesityDataSet_clean.csv
+  · Dataset limpio: 2087 registros tras eliminar 24 duplicados sintéticos
+
+data/processed/X_train.csv · data/processed/X_test.csv
+  · Features sin escalar para Decision Tree, Random Forest y XGBoost
+
+data/processed/X_train_scaled.csv · data/processed/X_test_scaled.csv
+  · Features escaladas (StandardScaler) para KNN y SVM
+
+data/processed/y_train.csv · data/processed/y_test.csv
+  · Target codificado (0-6) con orden clínico para todos los modelos
+
+data/temp/
+  · Ficheros de análisis exploratorio de campos individuales (bash + csv + txt)
+
+MODELOS
+-------
+models/scaler.pkl
+  · StandardScaler entrenado solo sobre X_train (sin data leakage)
+
+models/label_encoder_target.pkl
+  · LabelEncoder con orden clínico: 0=Insufficient_Weight → 6=Obesity_Type_III
+
+models/best_model.pkl
+  · Modelo ganador serializado (listo para predicción sobre nuevos datos)
+
+REPORTS
+-------
+reports/comparativa_modelos.csv · reports/comparativa_modelos.png
+  · Tabla y gráfico comparativo de los 5 modelos (accuracy test + CV 5-fold)
+
+reports/confusion_matrix_best.png
+  · Matriz de confusión del modelo ganador (absoluta + normalizada por fila)
+
+reports/feature_importance_best.png
+  · Importancia de features del modelo ganador
+
+reports/predicciones_test.csv
+  · Predicciones individuales con etiquetas clínicas y columna correcto (0/1)
+
+DOCUMENTACIÓN
+-------------
+docs/README.p7_g1_multiclase.JJ.md
+  · Documentación personal del trabajo realizado en la rama
+
+docs/README.ProyectoClasificaciónMulticlase.20260316092230L.md
+  · README general del proyecto del equipo
+
+docs/RequisitosProyecto.p7_g1_multiclase.txt
+  · Requisitos acordados por el equipo
+
+docs/p7_g1_multiclase.docx · docs/p7_g1_multiclase - ipynb.docx
+  · Documentación en Word (optimizada: imágenes ajustadas al ancho de página)
+
+docs/temp/EDA_Obesity_p7_g1_multiclase.html
+  · Export HTML del notebook EDA para compartir sin Jupyter
+
+docs/temp/EDA_Obesity_p7_g1_multiclase_JJ.md
+  · Export Markdown del notebook EDA
+
+CONFIGURACIÓN
+-------------
+pyproject.toml
+  · Dependencias del proyecto: pandas, numpy, scikit-learn, xgboost, matplotlib,
+    seaborn, joblib, jupyter · Python >=3.11,<3.14
+
+uv.lock
+  · Lockfile uv con versiones exactas de todas las dependencias
+
+.gitignore
+  · Excluye: .venv/, __pycache__/, .ipynb_checkpoints/, archivos temporales Office
+
+AddDependencias_vscode.Preprocesamiento_p7_g1_multiclase_JJ.ipynb.sh
+  · Script de instalación de dependencias con uv para VS Code
+
+NOTAS PARA EL EQUIPO
+====================
+- El orden clínico del target (0=Insufficient → 6=Obesity_III) está definido
+  en Preprocesamiento y propagado a Modelado vía label_encoder_target.pkl
+- Los modelos basados en árboles usan X_train/X_test (sin escalar)
+- KNN y SVM usan X_train_scaled/X_test_scaled
+- Para reproducir desde cero: ejecutar EDA → Preprocesamiento → Modelado en orden
+
+20260319123801*

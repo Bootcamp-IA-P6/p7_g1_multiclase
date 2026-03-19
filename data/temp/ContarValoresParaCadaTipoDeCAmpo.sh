@@ -14,5 +14,5 @@ for i in {1..17}; do
     
     # 3. Ejecutar el conteo y guardarlo en el archivo dinámico
     # tail -n +2 omite la cabecera para no contar el nombre del campo como un valor
-    tail -n +2 "$FILE" | cut -d ',' -f $i | sort | uniq -c > "ObesityDataSet.$CAMPO.csv"
+    tail -n +2 "$FILE" | cut -d ',' -f $i | sort | uniq -c > "${FILE%.*}.$CAMPO.csv"
 done

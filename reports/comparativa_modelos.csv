@@ -1,0 +1,10 @@
+Modelo,Accuracy Test,CV Mean,CV Std,Gap CV-Test
+XGBoost (base),0.9593,0.9682,0.0052,0.0089
+XGBoost (tuned),0.9522,0.9688,0.0041,0.0167
+Random Forest (tuned),0.9522,0.9503,0.0041,-0.0019
+SVM (tuned),0.9498,0.9497,0.0072,-0.0001
+Random Forest (base),0.9426,0.9491,0.0038,0.0065
+Decision Tree (baseline),0.933,0.8999,0.0073,-0.0331
+Decision Tree (tuned),0.933,0.8999,0.0073,-0.0331
+SVM (base),0.8612,0.8658,0.0249,0.0045
+KNN (k óptimo),0.8373,0.831,0.0199,-0.0063
