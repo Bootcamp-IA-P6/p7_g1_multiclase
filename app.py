@@ -16,7 +16,7 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main {
-        padding: 0rem 1rem;
+    padding: 0rem 1rem;
     }
     .chat-message {
         background: white;
@@ -120,27 +120,9 @@ st.markdown("""
         box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         margin-top: 20px;
     }
-    /* Tamaño de las etiquetas de los campos (Nombre, Edad, etc.) */
-    div[data-testid="stWidgetLabel"] p {
-        font-size: 26px !important; /* Mucho más grande */
-        font-weight: bold !important;
-        color: #1E88E5 !important;
-        line-height: 1.5 !important;
-    }
-
-    /* Tamaño de los números y texto que el usuario escribe */
-    input {
-        font-size: 22px !important;
-    }
-
-    /* Tamaño del texto dentro de los selectores (dropdowns) */
-    div[data-baseweb="select"] * {
-        font-size: 22px !important;
-    }
-
-    /* Títulos de los pasos (Paso 1/5...) */
-    .step-indicator {
-        font-size: 24px !important;
+    /* QUITAR ESPACIO ENTRE LABEL E INPUT */
+    div[data-testid="stTextInput"] {
+        margin-top: -20px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -333,9 +315,29 @@ with col_form:
         # PASO 0: Presentación
         if st.session_state.step == 0:
             st.markdown("### 👤 ¡Empecemos!")
-            nombre = st.text_input("Tu nombre", value=st.session_state.data.get('nombre', ''), key="nombre_input", placeholder="Escribe tu nombre aquí...")
-            genero = st.selectbox("Género", ["Femenino", "Masculino"], key="genero_input")
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            Tu nombre
+            </p>
+            """, unsafe_allow_html=True)
+            nombre = st.text_input("", value=st.session_state.data.get('nombre', ''), key="nombre_input", placeholder="Escribe tu nombre aquí...")
             
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            Género
+            </p>
+            """, unsafe_allow_html=True)
+            genero = st.selectbox("", ["Femenino", "Masculino"], key="genero_input")
             if st.button("Comenzar Evaluación 🚀", use_container_width=True):
                 if nombre:
                     st.session_state.data['nombre'] = nombre
@@ -355,10 +357,39 @@ with col_form:
         # PASO 1: Medidas Corporales
         elif st.session_state.step == 1:
             st.markdown(f"### 📏 Medidas de {st.session_state.data.get('nombre', 'Usuario')}")
-            
-            edad = st.number_input("Edad (años)", min_value=10, max_value=100, value=st.session_state.data.get('age', 25), key="edad_input")
-            altura = st.number_input("Altura (m)", min_value=1.20, max_value=2.30, value=st.session_state.data.get('height', 1.70), step=0.01, key="altura_input")
-            peso = st.number_input("Peso (kg)", min_value=30.0, max_value=200.0, value=st.session_state.data.get('weight', 70.0), step=0.1, key="peso_input")
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            Edad
+            </p>
+            """, unsafe_allow_html=True)
+            edad = st.number_input("", min_value=10, max_value=100, value=st.session_state.data.get('age', 25), key="edad_input")
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            Altura (m)
+            </p>
+            """, unsafe_allow_html=True)
+            altura = st.number_input("", min_value=1.20, max_value=2.30, value=st.session_state.data.get('height', 1.70), step=0.01, key="altura_input")
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            Peso (kg)
+            </p>
+            """, unsafe_allow_html=True)
+            peso = st.number_input("", min_value=30.0, max_value=200.0, value=st.session_state.data.get('weight', 70.0), step=0.1, key="peso_input")
             
             # Calcular y mostrar IMC
             if altura > 0:
@@ -397,23 +428,51 @@ with col_form:
                 "Frecuentemente": 2.5,
                 "Siempre": 3.0
             }
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Con qué frecuencia consumes vegetales?
+            </p>
+            """, unsafe_allow_html=True)
             fcvc_texto = st.selectbox(
-                "¿Con qué frecuencia consumes vegetales?",
+                "",
                 options=list(fcvc_opciones.keys()),
                 index=2,
                 key="fcvc_input"
             )
             fcvc = fcvc_opciones[fcvc_texto]
-            
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Cuántas comidas principales haces al día?
+            </p>
+            """, unsafe_allow_html=True)
             ncp = st.selectbox(
-                "¿Cuántas comidas principales haces al día?",
+                "",
                 options=["1 comida", "2 comidas", "3 comidas", "4 comidas o más"],
                 index=2,
                 key="ncp_input"
             )
             ncp_valor = {"1 comida": 1.0, "2 comidas": 2.0, "3 comidas": 3.0, "4 comidas o más": 4.0}[ncp]
-            
-            favc = st.selectbox("¿Consumes alimentos altos en calorías frecuentemente?", 
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Consumes alimentos altos en calorías frecuentemente?
+            </p>
+            """, unsafe_allow_html=True)
+            favc = st.selectbox("", 
                               ["No", "Sí"], key="favc_input")
             
             ch2o_opciones = {
@@ -424,8 +483,18 @@ with col_form:
                 "2.5 - 3 litros": 2.5,
                 "Más de 3 litros": 3.0
             }
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Cuántos litros de agua bebes al día?
+            </p>
+            """, unsafe_allow_html=True)
             ch2o_texto = st.selectbox(
-                "¿Cuántos litros de agua bebes al día?",
+                "",
                 options=list(ch2o_opciones.keys()),
                 index=3,
                 key="ch2o_input"
@@ -462,18 +531,47 @@ with col_form:
                 "6 días a la semana": 6.0,
                 "Todos los días": 7.0
             }
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Cuántos días a la semana haces actividad física?
+            </p>
+            """, unsafe_allow_html=True)
             faf_texto = st.selectbox(
-                "¿Cuántos días a la semana haces actividad física?",
+                "",
                 options=list(faf_opciones.keys()),
                 index=2,
                 key="faf_input"
             )
             faf = faf_opciones[faf_texto]
-            
-            family = st.selectbox("¿Tienes antecedentes familiares de obesidad?", 
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Tienes antecedentes familiares de obesidad?
+            </p>
+            """, unsafe_allow_html=True)
+            family = st.selectbox("", 
                                 ["No", "Sí"], key="family_input")
+            st.markdown("""
+            <p style='
+                font-size:25px;
+                font-weight:600;
+                margin-bottom:-50px;
+                margin-top:20px;
+            '>
+            ¿Fumas?
+            </p>
+            """, unsafe_allow_html=True)
             
-            smoke = st.selectbox("¿Fumas?", ["No", "Sí"], key="smoke_input")
+            smoke = st.selectbox("", ["No", "Sí"], key="smoke_input")
             
             if st.button("Ver Mi Diagnóstico 🎯", use_container_width=True):
                 st.session_state.data['faf'] = faf
