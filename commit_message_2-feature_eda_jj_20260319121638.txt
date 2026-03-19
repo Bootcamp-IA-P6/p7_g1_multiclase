@@ -1,0 +1,104 @@
+feat(jj): ejecución verificada de Preprocesamiento_p7_g1_multiclase_JJ.ipynb · 20260319121638
+
+TIPO DE CAMBIO
+==============
+El código fuente del notebook NO ha cambiado.
+Se ha ejecutado el notebook completo de arriba a abajo por primera vez,
+registrando los outputs reales de las 8 celdas de código.
+
+FICHERO MODIFICADO
+==================
+notebooks/Preprocesamiento_p7_g1_multiclase_JJ.ipynb
+
+CAMBIOS CONCRETOS
+=================
+
+Celda 1 — Imports y carga (execution_count: null → 1)
+  OUTPUT REGISTRADO:
+  · Dataset cargado correctamente: 2087 filas x 17 columnas ✅
+  · FAVC verificado: valores únicos = ['no', 'yes'] → CSV de entrada correcto ✅
+  · df.head(3): primeras filas visibles con valores originales (Gender texto, yes/no)
+
+Celda 2 — Clasificar columnas (execution_count: null → 2)
+  OUTPUT REGISTRADO:
+  · Binarias  : ['family_history_with_overweight', 'FAVC', 'SMOKE', 'SCC']
+  · Ordinales : ['CAEC', 'CALC', 'MTRANS']
+  · Nominales : ['Gender']
+  · Numéricas : ['Age', 'Height', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
+
+Celda 3 — Encoding binarias y target (execution_count: null → 3)
+  OUTPUT REGISTRADO:
+  · Mapeo clínico correcto — 7 clases, sin NaN ✅
+  · Tabla de equivalencias (orden clínico verificado):
+      0 → Insufficient_Weight
+      1 → Normal_Weight
+      2 → Overweight_Level_I
+      3 → Overweight_Level_II
+      4 → Obesity_Type_I
+      5 → Obesity_Type_II
+      6 → Obesity_Type_III
+  · Conteo de registros por clase (total = 2087 ✅):
+      0 → Insufficient_Weight     267
+      1 → Normal_Weight           282
+      2 → Overweight_Level_I      276
+      3 → Overweight_Level_II     290
+      4 → Obesity_Type_I          351
+      5 → Obesity_Type_II         297
+      6 → Obesity_Type_III        324
+
+Celda 3b — Verificación visual (execution_count: null → 4)
+  OUTPUT REGISTRADO:
+  · df.head() muestra columnas binarias ya como 0/1 ✅
+  · Gender sigue siendo texto (correcto, aún no se ha transformado)
+  · target_encoded visible con valores 0-6
+
+Celda 4 — Encoding ordinales y nominales (execution_count: null → 5)
+  OUTPUT REGISTRADO:
+  · Encoding completado ✅
+  · Dtypes finales verificados: todas las columnas son numéricas
+      Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE → float64
+      family_history_with_overweight, FAVC, SMOKE, SCC → int64
+      CAEC, CALC, MTRANS → float64 (OrdinalEncoder)
+      Gender_Male → bool (get_dummies)
+  · No queda ninguna columna de tipo object ✅
+
+Celda 5 — Split train/test (execution_count: null → 6)
+  OUTPUT REGISTRADO:
+  · Train: 1669 filas | Test: 418 filas ✅
+  · Distribución y_train (estratificada):
+      0→214  1→225  2→221  3→232  4→281  5→237  6→259
+  · Distribución y_test (estratificada):
+      0→53   1→57   2→55   3→58   4→70   5→60   6→65
+  · Proporciones coherentes entre train y test ✅
+
+Celda 6 — Escalado (execution_count: null → 7)
+  OUTPUT REGISTRADO:
+  · Escalado completado ✅
+  · describe() de X_train_scaled verificado:
+      count = 1669 en todas las columnas
+      mean  ≈ 0.00 en todas las columnas numéricas ✅
+      std   ≈ 1.00 en todas las columnas numéricas ✅
+      (confirma que StandardScaler funcionó correctamente)
+
+Celda 7 — Guardar artefactos (execution_count: null → 8)
+  OUTPUT REGISTRADO:
+  · Artefactos guardados correctamente ✅
+      data/processed/X_train.csv · X_test.csv
+      data/processed/X_train_scaled.csv · X_test_scaled.csv
+      data/processed/y_train.csv · y_test.csv
+      models/scaler.pkl
+      models/label_encoder_target.pkl
+
+VERIFICACIÓN GLOBAL
+===================
+· Ninguna celda generó errores ni excepciones
+· El assert de NaN en target_encoded no saltó → mapeo clínico correcto
+· Total registros tras split: 1669 + 418 = 2087 ✅
+· El notebook está listo para ser entrada del notebook de modelado
+
+CONVENCIÓN DE NOMBRADO DE COMMITS
+==================================
+Formato: commit_message_<rama>_<YYYYMMDDHHmmss>.txt
+  · <rama>          : nombre de la rama git activa
+  · <YYYYMMDDHHmmss>: timestamp del momento de creación del commit
+Ejemplo: commit_message_2-feature_eda_jj_20260319121638.txt

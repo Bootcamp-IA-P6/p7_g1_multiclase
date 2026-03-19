@@ -1,0 +1,88 @@
+chore(jj): cambios menores rama 2-feature_eda_jj · 20260319133259
+
+RAMA   : 2-feature_eda_jj
+FECHA  : 2026-03-19 13:32:59
+
+CAMBIOS DETECTADOS POR git status
+==================================
+
+MODIFICADOS:
+  · docs/.obsidian/workspace.json
+  · docs/p7_g1_multiclase.docx
+  · notebooks/Preprocesamiento_p7_g1_multiclase_JJ.ipynb
+
+ELIMINADOS:
+  · files.zip
+
+NUEVOS (untracked — se añaden con git add .):
+  · commit_cambios_preprocesamiento_20260319121638.sh
+  · commit_message_2-feature_eda_jj_20260319121638.txt
+  · files.20260319123328J.zip
+  · files.20260319131934J.zip
+  · git_commit_con_status_2-feature_eda_jj.sh
+
+
+DESCRIPCIÓN DE CADA CAMBIO
+==========================
+
+  docs/.obsidian/workspace.json
+    → Estado del workspace de Obsidian (ventanas abiertas, cursor)
+      Cambio automático generado por Obsidian al abrir la carpeta docs/
+
+  docs/p7_g1_multiclase.docx
+    → Documento Word del proyecto actualizado
+
+  files.zip
+    → Fichero ZIP (exportación / backup de ficheros del proyecto)
+
+  notebooks/Preprocesamiento_p7_g1_multiclase_JJ.ipynb
+    → Notebook de preprocesamiento actualizado
+      (código, outputs de ejecución o celdas markdown)
+
+  commit_cambios_preprocesamiento_20260319121638.sh
+    → Script de automatización git del proyecto
+
+  commit_message_2-feature_eda_jj_20260319121638.txt
+    → Fichero de commit anterior (registro de versión)
+
+  commit_message_2-feature_eda_jj_20260319133259.txt
+    → Fichero de commit anterior (registro de versión)
+
+  files.20260319123328J.zip
+    → Fichero ZIP (exportación / backup de ficheros del proyecto)
+
+  files.20260319131934J.zip
+    → Fichero ZIP (exportación / backup de ficheros del proyecto)
+
+  git_commit_con_status_2-feature_eda_jj.sh
+    → Script de automatización git del proyecto
+
+
+SALIDA COMPLETA DE git status
+==============================
+On branch 2-feature_eda_jj
+Your branch is up to date with 'origin/2-feature_eda_jj'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/.obsidian/workspace.json
+	modified:   docs/p7_g1_multiclase.docx
+	deleted:    files.zip
+	modified:   notebooks/Preprocesamiento_p7_g1_multiclase_JJ.ipynb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	commit_cambios_preprocesamiento_20260319121638.sh
+	commit_message_2-feature_eda_jj_20260319121638.txt
+	files.20260319123328J.zip
+	files.20260319131934J.zip
+	git_commit_con_status_2-feature_eda_jj.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+CONVENCIÓN DE NOMBRADO
+======================
+commit_message_<rama>_<YYYYMMDDHHmmss>.txt
+  <rama>           : rama git activa en el momento del commit
+  <YYYYMMDDHHmmss> : timestamp de ejecución del script
