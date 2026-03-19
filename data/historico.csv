@@ -1,0 +1,10 @@
+gender,age,height,weight,family_history,favc,fcvc,ncp,caec,smoke,ch2o,scc,faf,tue,calc,mtrans,imc,nombre,prediccion
+Male,50,1.7,75.0,no,no,2.0,3.0,Sometimes,no,2.0,no,1.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Marta,Overweight_Level_II
+Male,50,1.7,75.0,no,no,2.0,3.0,Sometimes,no,2.0,no,1.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Marta,Overweight_Level_II
+Female,25,1.7,75.0,no,no,2.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Usuario,Overweight_Level_I
+Female,25,1.7,75.0,no,no,2.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Usuario,Overweight_Level_I
+Female,25,1.7,65.0,no,no,3.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,22.49134948096886,Usuario,Normal_Weight
+Female,25,1.7,65.0,no,no,3.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,22.49134948096886,Usuario,Normal_Weight
+Female,25,1.7,75.0,no,no,2.47,2.58,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Usuario,Overweight_Level_I
+Male,25,1.7,75.0,no,no,2.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,25.95155709342561,,Overweight_Level_I
+Male,25,1.7,75.0,yes,yes,2.0,3.0,Sometimes,no,2.0,no,3.0,1.0,Sometimes,Public_Transportation,25.95155709342561,Usuario,Normal_Weight
