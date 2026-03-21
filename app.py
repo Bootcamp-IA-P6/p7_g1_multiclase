@@ -4,6 +4,8 @@ import joblib
 import plotly.graph_objects as go
 import os
 from datetime import datetime
+from streamlit_lottie import st_lottie
+import json
 
 # ==================== CONFIGURACIÓN ====================
 st.set_page_config(
@@ -11,6 +13,12 @@ st.set_page_config(
     page_icon="⚖️",
     layout="wide"
 )
+def load_lottie_file(filepath: str):
+    with open(filepath, "r") as f:
+        return json.load(f)
+
+# Cargar tu archivo (ajusta la ruta según donde lo guardes)
+lottie_balanza = load_lottie_file("assest/Live chatbot.json")
 
 # CSS personalizado 
 st.markdown("""
@@ -454,9 +462,91 @@ def reset_app():
     else:
         st.experimental_rerun()
 
-# ==================== HEADER ====================
-st.markdown("# ⚖️ HealthCheck AI - Asistente Nutricional Inteligente")
-st.markdown("### Tu compañero personal de salud y bienestar")
+## ==================== HEADER CON LOTTIE ====================
+import streamlit.components.v1 as components
+
+# Cargar el JSON del Lottie
+lottie_balanza = load_lottie_file("assest/Live chatbot.json")
+
+# Convertir el JSON a string para insertarlo en el HTML
+import json
+lottie_json_str = json.dumps(lottie_balanza)
+
+# Crear el header completo en HTML
+header_html = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <style>
+        body {{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }}
+        .header-container {{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: transparent;
+        }}
+        .lottie-wrapper {{
+            width: 180px;
+            height: 180px;
+            margin-right: 20px;
+            background: transparent;
+        }}
+        .title-wrapper {{
+            flex: 1;
+        }}
+        h1 {{
+            color: #ffffff;
+            font-size: 50px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-shadow: 
+                0 0 40px rgba(6, 182, 212, 0.8),
+                0 0 20px rgba(251, 191, 36, 0.6),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: -1px;
+        }}
+        h2 {{
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 
+                0 0 20px rgba(251, 191, 36, 0.6),
+                0 2px 6px rgba(0, 0, 0, 0.4);
+        }}
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="lottie-wrapper" id="lottie-animation"></div>
+        <div class="title-wrapper">
+            <h1> HealthCheck AI - Asistente Nutricional Inteligente</h1>
+            <h2>Tu compañero personal de salud y bienestar</h2>
+        </div>
+    </div>
+    <script>
+        var animationData = {lottie_json_str};
+        lottie.loadAnimation({{
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: animationData
+        }});
+    </script>
+</body>
+</html>
+"""
+
+components.html(header_html, height=220)
+# st.markdown("# ⚖️ HealthCheck AI - Asistente Nutricional Inteligente")
+# st.markdown("### Tu compañero personal de salud y bienestar")
 
 # Indicador de paso
 steps_labels = [

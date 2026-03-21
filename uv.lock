@@ -1265,6 +1265,7 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "seaborn" },
     { name = "streamlit" },
+    { name = "streamlit-lottie" },
     { name = "xgboost" },
 ]
 
@@ -1280,6 +1281,7 @@ requires-dist = [
     { name = "scikit-learn", specifier = ">=1.8.0" },
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "streamlit", specifier = ">=1.19.0" },
+    { name = "streamlit-lottie", specifier = ">=0.0.5" },
     { name = "xgboost", specifier = ">=3.2.0" },
 ]
 
@@ -1954,6 +1956,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/87/18/62fc264ee203e5870b24772231ac62376b93819aae6099abbaa1ea2d30b7/streamlit-1.19.0.tar.gz", hash = "sha256:e9793d351af5d4f7821c2ea81babf1c78cdbba69f057cf80d602dec56c4408f1", size = 9291207, upload-time = "2023-02-23T19:28:53.897Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/89/94/3f4814ae1a4f4dd88c8ad543e70f23286fdd592c707ab3c3b945b015ae61/streamlit-1.19.0-py2.py3-none-any.whl", hash = "sha256:5387c89a9e930b97d46446516cf43f9156e1863713867050c7021cf97f10c0b3", size = 9600441, upload-time = "2023-02-23T19:28:49.32Z" },
+]
+
+[[package]]
+name = "streamlit-lottie"
+version = "0.0.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4b/d4/e13ac9bde5b81b308d061092a420008af78c8b08547739423195596452d8/streamlit-lottie-0.0.5.tar.gz", hash = "sha256:c61589fb92bdf1dd5bd0a2ea75315d92e3383f46059b3704515d096a1e953d79", size = 792567, upload-time = "2023-06-05T13:54:58.718Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/52/b5/8ad7fa3101ec5baed712107a4cf304f174261f2ed2bebe063ad1fbedfe88/streamlit_lottie-0.0.5-py3-none-any.whl", hash = "sha256:98656d6f1cc99c5d96fb8329bafbcdbb65709ad0a05176dffdf4755f6fc04cff", size = 802386, upload-time = "2023-06-05T13:54:56.542Z" },
 ]
 
 [[package]]
