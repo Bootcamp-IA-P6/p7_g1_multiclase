@@ -22,7 +22,7 @@ st.markdown("""
     div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {
         border-radius: 12px !important;
         border: 2px solid #bdc3c7 !important;
-        background-color: #ffffff !important;
+        background-color: #f8f8f8 !important;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
         transition: all 0.3s ease;
     }
