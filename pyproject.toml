@@ -1,9 +1,14 @@
 [project]
 name = "p7-g1-multiclase"
 version = "0.1.0"
-description = "Add your description here"
+description = "Multiclass classification MVP - Obesity Prediction"
 readme = "README.md"
+<<<<<<< HEAD
+requires-python = ">=3.11,<3.14"
+
+=======
 requires-python = ">=3.11,<3.13"
+>>>>>>> develop
 dependencies = [
     "altair<5",
     "joblib>=1.5.3",
@@ -14,7 +19,13 @@ dependencies = [
     "plotly>=6.6.0",
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
+<<<<<<< HEAD
+    "streamlit>=1.35.0",
+    "xgboost>=2.0.0"
+]
+=======
     "streamlit>=1.19.0",
     "streamlit-lottie>=0.0.5",
     "xgboost>=3.2.0",
 ]
+>>>>>>> develop
