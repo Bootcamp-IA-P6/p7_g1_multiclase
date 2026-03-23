@@ -852,7 +852,7 @@ with col_form:
                     df_input['nombre'] = st.session_state.data['nombre']
                     df_input['prediccion'] = label
                     df_input['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    df_input.to_csv('data/historico.csv', mode='a', index=False, 
+                    df_input.to_csv('data/historico.csv', mode='a', index=False, sep=";",
                     header=not os.path.exists('data/historico.csv'))
                     st.success(" Guardado exitosamente")
             
