@@ -6,8 +6,8 @@ services:
     ports:
       - "8501:8501"
     volumes:
-      # Esto sincroniza tu código local con el contenedor para que no 
-      # tengas que reconstruir la imagen cada vez que cambias algo en app.py
+      # Esto sincroniza el código local con el contenedor para que no se
+      # tenga que reconstruir la imagen cada vez que cambiamos algo en app.py
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
