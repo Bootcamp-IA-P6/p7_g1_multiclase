@@ -6,8 +6,12 @@ import os
 from datetime import datetime
 from streamlit_lottie import st_lottie
 import json
-
+from dotenv import load_dotenv  
+from sqlalchemy import create_engine 
 # ==================== CONFIGURACIÓN ====================
+# Cargar variables de entorno
+load_dotenv()
+
 st.set_page_config(
     page_title="HealthCheck AI - Asistente Nutricional",
     page_icon="⚖️",
@@ -227,7 +231,7 @@ st.markdown("""
     }
     
     /* BOTONES OCEAN PREMIUM */
-    .stButton > button {
+    .stButton > button, .stDownloadButton > button {
         font-size: 18px !important;
         font-weight: 800 !important;
         padding: 20px 40px !important;
@@ -242,7 +246,7 @@ st.markdown("""
         position: relative;
         overflow: hidden;
     }
-    .stButton > button::before {
+    .stButton > button::before, .stDownloadButton > button::before {
         content: '';
         position: absolute;
         top: 0;
@@ -252,23 +256,23 @@ st.markdown("""
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         transition: left 0.5s;
     }
-    .stButton > button:hover::before {
+    .stButton > button:hover::before, stDownloadButton > button:hover::before {
         left: 100%;
     }
-    .stButton > button:hover {
+    .stButton > button:hover, .stDownloadButton > button:hover {
         transform: translateY(-5px) scale(1.03) !important;
         box-shadow: 0 18px 45px rgba(8, 145, 178, 0.5) !important;
     }
-    .stButton > button:active {
+    .stButton > button:active, .stDownloadButton > button:active {
         transform: translateY(-2px) scale(0.98) !important;
     }
     
     /* BOTÓN PRIMARY (Dorado) */
-    .stButton > button[kind="primary"] {
+    .stButton > button[kind="primary"], stDownloadButton > button[kind="primary"] {
         background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fcd34d 100%) !important;
         box-shadow: 0 10px 30px rgba(245, 158, 11, 0.35) !important;
     }
-    .stButton > button[kind="primary"]:hover {
+    .stButton > button[kind="primary"]:hover, .stDownloadButton > button[kind="primary"]:hover {
         box-shadow: 0 18px 45px rgba(245, 158, 11, 0.5) !important;
     }
     
@@ -545,8 +549,6 @@ header_html = f"""
 """
 
 components.html(header_html, height=220)
-# st.markdown("# ⚖️ HealthCheck AI - Asistente Nutricional Inteligente")
-# st.markdown("### Tu compañero personal de salud y bienestar")
 
 # Indicador de paso
 steps_labels = [
@@ -604,13 +606,13 @@ with col_form:
             'favc': st.session_state.data['favc'],
             'fcvc': st.session_state.data['fcvc'],
             'ncp': st.session_state.data['ncp'],
-            'caec': "Sometimes",
+            'caec': st.session_state.data['caec'],
             'smoke': st.session_state.data['smoke'],
             'ch2o': st.session_state.data['ch2o'],
             'scc': "no",
             'faf': st.session_state.data['faf'],
             'tue': 1.0,
-            'calc': "Sometimes",
+            'calc': st.session_state.data['calc'],
             'mtrans': "Public_Transportation",
             'imc': st.session_state.data['imc']
         }
@@ -843,19 +845,57 @@ with col_form:
             
             # Botones de acción con mejor diseño
             st.markdown("<br>", unsafe_allow_html=True)
-            col_btn1, col_btn2, col_btn3 = st.columns(3)
+            col_btn1, col_btn2, col_btn3, col_btn4 = st.columns(4)
+            
+            # with col_btn1:
+            #     if st.button(" Guardar Resultado", use_container_width=True, key="save_result", type="primary"):
+            #         if not os.path.exists('data'):
+            #             os.makedirs('data')
+            #         df_input['nombre'] = st.session_state.data['nombre']
+            #         df_input['prediccion'] = label
+            #         df_input['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            #         df_input.to_csv('data/historico.csv', mode='a', index=False, sep=";",
+            #         header=not os.path.exists('data/historico.csv'))
+            #         st.success(" Guardado exitosamente")
             
             with col_btn1:
                 if st.button(" Guardar Resultado", use_container_width=True, key="save_result", type="primary"):
-                    if not os.path.exists('data'):
-                        os.makedirs('data')
+                    
+                    # 1. Preparamos los datos a guardar
                     df_input['nombre'] = st.session_state.data['nombre']
                     df_input['prediccion'] = label
                     df_input['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    df_input.to_csv('data/historico.csv', mode='a', index=False, sep=";",
-                    header=not os.path.exists('data/historico.csv'))
-                    st.success(" Guardado exitosamente")
-            
+                    
+                    guardado_exitoso_db = False
+                    
+                    # 2. INTENTO 1: Guardar en Base de Datos PostgreSQL
+                    DATABASE_URL = os.environ.get("DATABASE_URL")
+                    
+                    if DATABASE_URL:
+                        try:
+                            if DATABASE_URL.startswith("postgres://"):
+                                DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+                                
+                            engine = create_engine(DATABASE_URL)
+                            df_input.to_sql('historico', con=engine, if_exists='append', index=False)
+                            st.success(" Guardado exitosamente en la base de datos en la nube")
+                            guardado_exitoso_db = True
+                        except Exception as e:
+                            # Si falla, mostramos una advertencia pero el programa sigue ejecutándose
+                            st.warning(f"⚠️ La base de datos no está disponible. Usando archivo de respaldo...")
+                            print(f"Error de DB: {e}") # Queda registrado en los logs
+                    
+                    # 3. INTENTO 2 (Fallback): Guardar en CSV si la BD falló o no existe
+                    if not guardado_exitoso_db:
+                        try:
+                            if not os.path.exists('data'):
+                                os.makedirs('data')
+                                
+                            df_input.to_csv('data/historico.csv', mode='a', index=False, sep=";",
+                                          header=not os.path.exists('data/historico.csv'))
+                            st.success(" Guardado exitosamente en el archivo local (CSV)")
+                        except Exception as e:
+                            st.error(f"❌ Error crítico: No se pudo guardar ni en DB ni en CSV.")
             with col_btn2:
                 if st.button("Modificar Datos", use_container_width=True, key="back_step"):
                     st.session_state.step = 1
@@ -867,6 +907,44 @@ with col_form:
             with col_btn3:
                 if st.button("Nueva Consulta", use_container_width=True, key="new_consult"):
                     reset_app()
+                    
+            with col_btn4:
+                datos_disponibles = False
+                
+                # 1. Intentamos leer de la base de datos
+                try:
+                    DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///local_history.db")
+                    if DATABASE_URL.startswith("postgres://"):
+                        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+                    
+                    engine = create_engine(DATABASE_URL)
+                    df_descarga = pd.read_sql('historico', con=engine)
+                    csv_descarga = df_descarga.to_csv(index=False).encode('utf-8')
+                    datos_disponibles = True
+                    
+                except Exception:
+                    # 2. Si falla, intentamos leer del CSV local como respaldo
+                    try:
+                        if os.path.exists('data/historico.csv'):
+                            df_descarga = pd.read_csv('data/historico.csv', sep=";")
+                            # Lo convertimos a formato texto para que el botón lo pueda descargar
+                            csv_descarga = df_descarga.to_csv(index=False, sep=";").encode('utf-8')
+                            datos_disponibles = True
+                    except Exception:
+                        pass
+                
+                # 3. Mostrar el botón adecuado
+                if datos_disponibles:
+                    st.download_button(
+                        label="Descargar datos",
+                        data=csv_descarga,
+                        file_name="historico_obesidad.csv",
+                        mime="text/csv",
+                        use_container_width=True
+                    )
+                else:
+                    # Si no hay datos en ningún sitio, mostramos un botón desactivado
+                    st.button("📥 Sin datos", disabled=True, use_container_width=True)
             
             # Advertencia médica compacta
             st.markdown("""
@@ -1079,7 +1157,23 @@ with col_form:
                 )
                 ch2o = ch2o_opciones[ch2o_texto]
                 
+                caec_opciones = {
+                    "Nunca": "no",
+                    "A veces": "Sometimes",
+                    "Frecuentemente": "Frequently",
+                    "Siempre": "Always"
+                }
+                st.markdown("""
+                <p style='font-size:26px; font-weight:700; margin-bottom:-50px; margin-top:20px; color: white;'>
+                ¿Sueles comer entre comidas (snacks)?
+                </p>
+                """, unsafe_allow_html=True)
+                caec_texto = st.selectbox("", options=list(caec_opciones.keys()), key="caec_input")
+                caec_valor = caec_opciones[caec_texto]
+                
+                
                 if st.button(" Siguiente Paso", use_container_width=True):
+                    st.session_state.data['caec'] = caec_valor
                     st.session_state.data['fcvc'] = fcvc
                     st.session_state.data['ncp'] = ncp_valor
                     st.session_state.data['favc'] = "yes" if favc == "Sí" else "no"
@@ -1151,10 +1245,24 @@ with col_form:
                 ¿Fumas?
                 </p>
                 """, unsafe_allow_html=True)
-                
                 smoke = st.selectbox("", ["No", "Sí"], key="smoke_input")
                 
+                calc_opciones = {
+                    "Nunca": "no",
+                    "A veces": "Sometimes",
+                    "Frecuentemente": "Frequently",
+                    "Siempre": "Always"
+                }
+                st.markdown("""
+                <p style='font-size:26px; font-weight:700; margin-bottom:-50px; margin-top:20px; color: white;'>
+                ¿Con qué frecuencia consumes alcohol?
+                </p>
+                """, unsafe_allow_html=True)
+                calc_texto = st.selectbox("", options=list(calc_opciones.keys()), key="calc_input")
+                calc_valor = calc_opciones[calc_texto]
+                
                 if st.button(" Ver Mi Diagnóstico", use_container_width=True, type="primary"):
+                    st.session_state.data['calc'] = calc_valor
                     st.session_state.data['faf'] = faf
                     st.session_state.data['family_history'] = "yes" if family == "Sí" else "no"
                     st.session_state.data['smoke'] = "yes" if smoke == "Sí" else "no"
