@@ -1,0 +1,11 @@
+.git
+.github
+__pycache__
+*.pyc
+.env
+.venv
+venv/
+env/
+.python-version
+# Ignoramos los notebooks porque no hacen falta para que la app corra en producción
+notebooks/
