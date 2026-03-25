@@ -846,18 +846,7 @@ with col_form:
             # Botones de acción con mejor diseño
             st.markdown("<br>", unsafe_allow_html=True)
             col_btn1, col_btn2, col_btn3, col_btn4 = st.columns(4)
-            
-            # with col_btn1:
-            #     if st.button(" Guardar Resultado", use_container_width=True, key="save_result", type="primary"):
-            #         if not os.path.exists('data'):
-            #             os.makedirs('data')
-            #         df_input['nombre'] = st.session_state.data['nombre']
-            #         df_input['prediccion'] = label
-            #         df_input['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            #         df_input.to_csv('data/historico.csv', mode='a', index=False, sep=";",
-            #         header=not os.path.exists('data/historico.csv'))
-            #         st.success(" Guardado exitosamente")
-            
+           
             with col_btn1:
                 if st.button(" Guardar Resultado", use_container_width=True, key="save_result", type="primary"):
                     
