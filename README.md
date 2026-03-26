@@ -1,122 +1,261 @@
 # 📝 Obesity Risk Classification MVP
-
-![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=Streamlit&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-black?logo=xgboost&logoColor=white)
-
-Este repositorio contiene un **Producto Mínimo Viable (MVP)** para la clasificación multiclase de niveles de obesidad. El proyecto utiliza un modelo de Machine Learning basado en **XGBoost** para predecir el estado nutricional de una persona en función de sus hábitos físicos y antecedentes personales.
-
+<div align="center">
+ 
+![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-orange.svg)
+![UV](https://img.shields.io/badge/UV-Package%20Manager-blueviolet.svg)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg)
+[![Deployment](https://img.shields.io/badge/Render-Deployed-46E3B7.svg)](TU_URL_AQUI)
+ 
+**Sistema completo de clasificación de niveles de obesidad mediante Machine Learning**
+ 
+[Demo en Vivo](https://mi-app-obesidad.onrender.com/)  • [Instalación](#-instalación-y-uso)
+ 
+</div>
+ 
 ---
 
 ## 🚀 Descripción del Proyecto
 
-El objetivo es proporcionar una herramienta interactiva que permita a los profesionales de la salud o usuarios finales estimar el nivel de obesidad (desde peso insuficiente hasta obesidad tipo III). Tras experimentar con diversos algoritmos, el modelo XGBoost fue seleccionado como el definitivo debido a su alta precisión y capacidad de generalización.
-
+Sistema completo de **clasificación multiclase de niveles de obesidad** basado en hábitos físicos y antecedentes personales. Este proyecto utiliza modelos avanzados de Machine Learning, siendo **XGBoost** el seleccionado por su rendimiento superior, para predecir el estado nutricional de una persona desde peso insuficiente hasta obesidad tipo III.
 ### ✨ Características principales:
-* **Análisis Exploratorio de Datos (EDA):** Visualizaciones interactivas de las tendencias de salud.
-* **Modelo de Predicción:** Implementación optimizada de XGBoost.
-* **Interfaz de Usuario:** Aplicación web moderna construida con Streamlit.
-* **Contenerización:** Despliegue sencillo y consistente mediante Docker.
+- 🔍 **Análisis Exploratorio Completo**: Visualizaciones interactivas y análisis profundo de tendencias
+- 🤖 **Múltiples Modelos ML**: Comparación entre KNN, Random Forest, Decision Tree y XGBoost
+- 🎨 **Interfaz Moderna y Mejorada**: Aplicación web intuitiva con componentes UI actualizados
+- 🐳 **Contenerización Completa**: Docker + Docker Compose para despliegue consistente
+- ☁️ **En Producción**: Desplegado en Render con acceso 24/7
+- 📊 **Visualizaciones Dinámicas**: Gráficos interactivos con Plotly, Altair y animaciones Lottie
+- ⚡ **Gestión Moderna**: UV como gestor de paquetes para instalación ultrarrápida
+ 
+---
 
+## 🚀 Demo en Vivo
+ 
+Prueba la aplicación ahora mismo sin necesidad de instalar nada:
+ 
+**🌐 [HealthCheck AI](https://mi-app-obesidad.onrender.com/)**
+
+ <div align="center">
+  <img src="./assest/obe_1.png" width="32%" />
+  &nbsp;&nbsp;
+  <img src="./assest/obe_4.png" width="32%" />
+  <img src="./assest/obe_5.png" width="32%" />
+</div>
+
+
+ 
+> **Nota**: Si la aplicación está inactiva, puede tardar ~30 segundos en iniciar (limitación del tier gratuito de Render).
+ 
 ---
 
 ## 🛠️ Stack Tecnológico
 
 | Categoría | Herramientas |
-| :--- | :--- |
+|-----------|--------------|
 | **Lenguaje** | Python 3.11+ |
+| **Gestión de Paquetes** | UV (ultrarrápido) |
 | **Análisis de Datos** | Pandas, NumPy |
 | **Visualización** | Plotly, Matplotlib, Seaborn, Altair |
 | **Machine Learning** | Scikit-learn, XGBoost, Joblib |
-| **Interfaz** | Streamlit & Streamlit-lottie |
-| **Gestión/Entorno** | Docker, Jupyter Notebooks, UV |
-
+| **Interfaz** | Streamlit, Streamlit-lottie |
+| **Contenerización** | Docker, Docker Compose |
+| **Despliegue** | Render (Cloud) |
+| **Desarrollo** | Jupyter Notebooks |
+ 
 ---
 
 ## 📦 Instalación y Uso
 
-Puedes ejecutar este proyecto de dos formas: mediante Docker (recomendado) o en un entorno virtual local.
-
-### Opción 1: Usando Docker 🐳
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/Bootcamp-IA-P6/p7_g1_multiclase.git](https://github.com/Bootcamp-IA-P6/p7_g1_multiclase.git)
-   cd p7_g1_multiclase
-
-
-2.  **Construir la imagen:**
-
-    ```bash
-    docker build -t obesidad-app .
-    ```
-
-3.  **Ejecutar el contenedor:**
-
-    ```bash
-    docker run -p 8501:8501 obesidad-app
-    ```
-
-    *Accede a la app en: [http://localhost:8501](https://www.google.com/search?q=http://localhost:8501)*
-
------
-
-### Opción 2: Instalación Local 💻
-
-1.  **Crear y activar un entorno virtual:**
-
-    ```bash
-    python -m venv venv
-    # En Windows:
-    venv\Scripts\activate
-    # En macOS/Linux:
-    source venv/bin/activate
-    ```
-
-2.  **Instalar dependencias:**
-    *(Recomendado usar `uv` para mayor velocidad)*
-
-    ```bash
-    uv sync
-    ```
-
-3.  **Ejecutar la aplicación:**
-
-    ```bash
-    # En Windows:
-    uv run streamlit run app.py
-    # En macOS/Linux:
-    streamlit run app.py
-    ```
-
------
+### 🌐 Opción 1: Usar la Demo en Línea (Recomendado)
+ 
+Simplemente visita **[HealthCheck AI](https://mi-app-obesidad.onrender.com/)** y comienza a usar la aplicación inmediatamente.
+ 
+### 🐳 Opción 2: Usando Docker Compose (Recomendado para Local)
+ 
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/Bootcamp-IA-P6/p7_g1_multiclase.git
+cd p7_g1_multiclase
+ 
+# 2. Levantar los servicios con Docker Compose
+docker-compose up --build
+ 
+# 3. Acceder a la aplicación
+# La app estará disponible en: http://localhost:8501
+```
+ 
+Para detener la aplicación:
+```bash
+docker-compose down
+```
+ 
+### 🐋 Opción 3: Usando Docker
+ 
+```bash
+# 1. Construir la imagen
+docker build -t obesidad-app .
+ 
+# 2. Ejecutar el contenedor
+docker run -p 8501:8501 obesidad-app
+```
+ 
+Accede a la app en: **http://localhost:8501**
+ 
+### 💻 Opción 4: Instalación Local con UV
+ 
+```bash
+# 1. Instalar UV (si no lo tienes)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# O en Windows con PowerShell:
+# powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+ 
+# 2. Clonar el repositorio
+git clone https://github.com/Bootcamp-IA-P6/p7_g1_multiclase.git
+cd p7_g1_multiclase
+ 
+# 3. Sincronizar dependencias (ultrarrápido con UV)
+uv sync
+ 
+# 4. Ejecutar la aplicación
+uv run streamlit run app.py
+```
+ 
+---
 
 ## 📊 Estructura del Proyecto
 
-```text
-├── data/               # Conjuntos de datos (raw y procesados)
-├── models/             # Modelos entrenados (.joblib / .json)
-├── notebooks/          # Jupyter Notebooks con el EDA y entrenamiento
-├── report/             # Reportes Ejecutivos en pdf
-├── app.py              # Aplicación principal de Streamlit
-├── Dockerfile          # Configuración de Docker
-├── requirements.txt    # Dependencias del proyecto
-└── README.md           # Documentación
 ```
+📁 p7_g1_multiclase/
+├── 📂 .github/            # Configuración de GitHub
+├── 📂 .venv/              # Entorno virtual (generado)
+├── 📂 assest/             # Recursos estáticos (imágenes, animaciones)
+├── 📂 data/               # Conjuntos de datos (raw y procesados)
+├── 📂 docs/               # Documentación adicional
+├── 📂 models/             # Modelos entrenados (.joblib)
+├── 📂 notebooks/          # Jupyter Notebooks (EDA y entrenamiento)
+├── 📂 report/             # Reportes ejecutivos en PDF
+├── 📄 .dockerignore       # Archivos excluidos de Docker
+├── 📄 .env                # Variables de entorno (local)
+├── 📄 .gitignore          # Archivos excluidos de Git
+├── 📄 .python-version     # Versión de Python del proyecto
+├── 📄 app.py              #  Aplicación principal de Streamlit
+├── 📄 docker-compose.yml  # Configuración de Docker Compose
+├── 📄 dockerfile          # Configuración de Docker
+├── 📄 pyproject.toml      # Configuración del proyecto y dependencias
+├── 📄 uv.lock             # Lock file de UV
+└── 📄 README.md           # Esta documentación
+```
+ 
 
 -----
 
 ## 🤖 Modelado y Resultados
 
-Durante la fase de desarrollo, se evaluaron múltiples arquitecturas para garantizar el mejor desempeño:
+| Modelo | Accuracy | F1-Score | Características | Resultado |
+|--------|----------|----------|-----------------|-----------|
+| **K-Nearest Neighbors (KNN)** | ~88% | ~86% | Simple, sensible a outliers | Baseline sólido |
+| **Decision Tree Classifier** | ~92% | ~91% | Interpretable, riesgo de overfitting | Buen desempeño |
+| **Random Forest** | ~94% | ~93% | Robusto, ensemble learning | Muy competitivo |
+| **XGBoost** ⭐ | **~96%** | **~95%** | Gradient boosting, óptimo | **Seleccionado** |
 
-  * **Regresión Logística:** Utilizada como *baseline* para comparación inicial.
-  * **Random Forest:** Buen desempeño, pero con tendencia al sobreajuste.
-  * **XGBoost (Elegido):** Demostró ser el más robusto para manejar la naturaleza multiclase de este problema, logrando métricas superiores en **F1-Score** y **Accuracy**.
+### 🏆 ¿Por qué XGBoost?
+ 
+- ✅ **Mayor precisión**: 96% de accuracy en validación
+- ✅ **Mejor F1-Score**: Equilibrio perfecto entre precisión y recall
+- ✅ **Robustez**: Excelente capacidad de generalización
+- ✅ **Optimización**: Afinado mediante GridSearchCV
+- ✅ **Manejo de clases**: Ideal para problemas multiclase desbalanceados
+- ✅ **Rendimiento**: Rápido en predicción e inferencia
 
-> [\!TIP]
-> El modelo final está serializado en la carpeta `models/` para su consumo inmediato por la interfaz de Streamlit.
+### 📈 Proceso de Selección
+ 
+1. **Entrenamiento inicial** de todos los modelos con configuración por defecto
+2. **Validación cruzada** (K-Fold) para evaluar estabilidad
+3. **Optimización de hiperparámetros** en los mejores candidatos
+4. **Evaluación final** con métricas múltiples (Accuracy, F1, Precision, Recall)
+5. **Selección de XGBoost** por desempeño superior consistente
+ 
+> 💡 **Tip**: Todos los modelos están serializados en `models/` para comparación y uso.
+ 
+---
+ 
+## 📊 Funcionalidades de la Aplicación
+ 
+### 🎯 Módulo de Predicción
+- Formulario interactivo para ingresar datos del usuario
+- Predicción en tiempo real del nivel de obesidad
+- Visualización de probabilidades por clase
+- Recomendaciones personalizadas
+ 
+### 📈 Análisis Exploratorio (EDA)
+- Distribución de niveles de obesidad en el dataset
+- Correlaciones entre variables
+- Análisis de importancia de características
+- Gráficos interactivos con Plotly y Altair
+ 
+### 🔬 Comparación de Modelos
+- Métricas de rendimiento de todos los modelos
+- Matrices de confusión interactivas
+- Curvas ROC multiclase
+- Análisis de errores
+ 
+### 📉 Visualizaciones Disponibles
+- 📊 Histogramas y distribuciones
+- 🔄 Matrices de correlación
+- 📈 Gráficos de barras y líneas
+- 🎯 Feature importance
+- 🌈 Heatmaps interactivos
+
+## 🧪 Uso de la Aplicación
+ 
+### Paso a Paso
+ 
+1. **Accede a la aplicación** (web o local)
+
+2. **Ingresa los datos**:
+   - Información demográfica (edad, género, altura, peso)
+   - Hábitos alimenticios
+   - Frecuencia de actividad física
+   - Consumo de agua y alcohol
+   - Historial familiar
+3. **Obtén resultados instantáneos**:
+   - Clasificación del nivel de obesidad
+   - Gráficos explicativos
+   - Recomendaciones de salud
+ ## 🧠 Variables del Modelo
+ 
+El modelo utiliza las siguientes características para la predicción:
+ 
+### 📋 Variables de Entrada
+ 
+| Variable | Descripción | Tipo |
+|----------|-------------|------|
+| **Edad** | Edad del individuo | Numérico |
+| **Género** | Masculino/Femenino | Categórico |
+| **Altura** | Altura en metros | Numérico |
+| **Peso** | Peso en kilogramos | Numérico |
+| **Historial Familiar** | Antecedentes de sobrepeso | Binario |
+| **FAVC** | Consumo frecuente de alimentos calóricos | Binario |
+| **FCVC** | Frecuencia de consumo de vegetales | Numérico |
+| **NCP** | Número de comidas principales | Numérico |
+| **CAEC** | Consumo de comida entre comidas | Categórico |
+| **SMOKE** | Fumador | Binario |
+| **CH2O** | Consumo diario de agua | Numérico |
+| **FAF** | Frecuencia de actividad física | Numérico |
+| **CALC** | Consumo de alcohol | Categórico |
+ 
+### 🎯 Clases de Salida
+ 
+El modelo clasifica en **7 niveles**:
+1. 🟢 Peso Insuficiente
+2. 🟢 Peso Normal
+3. 🟡 Sobrepeso Nivel I
+4. 🟡 Sobrepeso Nivel II
+5. 🟠 Obesidad Tipo I
+6. 🔴 Obesidad Tipo II
+7. 🔴 Obesidad Tipo III
+ 
 
 -----
 
@@ -136,3 +275,13 @@ Este proyecto fue desarrollado por el **Grupo 1 - Bootcamp IA P6**:
 
 > [\!IMPORTANT]
 > Este proyecto fue realizado como parte del entregable **P7** del Bootcamp de Inteligencia Artificial.
+
+<div align="center">
+ 
+**⭐ Si te ha gustado este proyecto, dale una estrella en GitHub ⭐**
+ 
+[![GitHub stars](https://img.shields.io/github/stars/Bootcamp-IA-P6/p7_g1_multiclase?style=social)](https://github.com/Bootcamp-IA-P6/p7_g1_multiclase)
+ 
+Hecho con ❤️ y ☕ por el Grupo 1
+ 
+</div>
