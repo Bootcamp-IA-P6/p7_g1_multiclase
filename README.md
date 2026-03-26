@@ -35,6 +35,15 @@ Sistema completo de **clasificación multiclase de niveles de obesidad** basado 
 Prueba la aplicación ahora mismo sin necesidad de instalar nada:
  
 **🌐 [HealthCheck AI](https://mi-app-obesidad.onrender.com/)**
+
+ <div align="center">
+  <img src="./assest/obe_1.png" width="32%" />
+  &nbsp;&nbsp;
+  <img src="./assest/obe_4.png" width="32%" />
+  <img src="./assest/obe_5.png" width="32%" />
+</div>
+
+
  
 > **Nota**: Si la aplicación está inactiva, puede tardar ~30 segundos en iniciar (limitación del tier gratuito de Render).
  
